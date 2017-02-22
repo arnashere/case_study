@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta name="vewport" content="width=device-width, intial-scale=1.0"/>
+<head>
+<title> Case Study </title>
+<script src="angular.min.js"></script>
+<script src="app.js"></script>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body ng-app="myApp">
+	<div>
+		<div ng-controller="ParentController" class="parent-element" ng-init="onInitialize();">
+			<input class="input-parent" type="text" placeholder="Enter a String" name="parent" ng-model="data.userInput" ng-change="reCalculate()"/>
+			<div class="child-wrapper" id="main">
+                 <div class="{{'circle number'+$index}}" ng-style="applyStyle($index,node);" ng-repeat="node in data.stringInArray track by $index">
+                     <div class="node-value">{{node}}</div>
+                 </div> 
+            </div>
+			<svg id="svgMain">
+                <line ng-repeat="letter in data.stringInArray track by $index" ng-attr-x1="{{data.linex1}}" ng-attr-y1="{{data.liney1}}" ng-attr-x2="{{getx2(letter,$index)}}" ng-attr-y2="{{gety2(letter,$index)}}" stroke="black" stroke-width="1"></line>
+            </svg>
+		</div>
+		
+	</div>
+</body>
